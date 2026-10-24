@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en" style=""><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Calculator</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "border-glass": "rgba(251, 191, 36, 0.25)",
+            "tertiary-fixed": "#ffdbca",
+            "outline-variant": "#534434",
+            "surface-tint": "#ffb95f",
+            "secondary-fixed-dim": "#7bd0ff",
+            "secondary": "#7bd0ff",
+            "on-tertiary-fixed-variant": "#783200",
+            "surface-container-highest": "#383432",
+            "on-primary-fixed-variant": "#653e00",
+            "surface-container-low": "#1e1b19",
+            "surface-container-high": "#2d2927",
+            "tertiary-container": "#ff965b",
+            "on-error-container": "#ffdad6",
+            "primary": "#ffc174",
+            "on-primary": "#472a00",
+            "inverse-on-surface": "#33302d",
+            "inverse-surface": "#e9e1dd",
+            "on-secondary": "#00354a",
+            "key-number-fill": "rgba(41, 37, 36, 0.65)",
+            "text-accent": "#38bdf8",
+            "on-tertiary": "#552100",
+            "on-background": "#e9e1dd",
+            "surface": "#161311",
+            "on-surface": "#e9e1dd",
+            "background": "#161311",
+            "secondary-container": "#00a6e0",
+            "on-primary-fixed": "#2a1700",
+            "on-tertiary-fixed": "#341100",
+            "primary-fixed": "#ffddb8",
+            "surface-glass-amber": "#574a2e9f",
+            "on-error": "#690005",
+            "text-secondary": "#d6d3d1",
+            "surface-container": "#221f1d",
+            "key-accent-fill": "#f59e0b",
+            "on-secondary-fixed-variant": "#004c69",
+            "inverse-primary": "#855300",
+            "text-primary": "#fef3c7",
+            "secondary-fixed": "#c4e7ff",
+            "surface-bright": "#3c3836",
+            "tertiary-fixed-dim": "#ffb690",
+            "on-surface-variant": "#d8c3ad",
+            "error-container": "#93000a",
+            "primary-fixed-dim": "#ffb95f",
+            "primary-container": "#f59e0b",
+            "surface-glass-active": "rgba(255, 255, 255, 0.18)",
+            "tertiary": "#ffbe9d",
+            "on-tertiary-container": "#732f00",
+            "on-primary-container": "#613b00",
+            "error": "#ffb4ab",
+            "surface-dim": "#161311",
+            "surface-glass-light": "rgba(255, 255, 255, 0.08)",
+            "border-glass-specular": "rgba(255, 255, 255, 0.35)",
+            "surface-container-lowest": "#100e0c",
+            "on-secondary-container": "#00374d",
+            "surface-variant": "#383432",
+            "on-secondary-fixed": "#001e2c",
+            "key-action-fill": "rgba(87, 74, 46, 0.85)",
+            "outline": "#a08e7a"
+          },
+          "borderRadius": {
+            "DEFAULT": "1rem",
+            "lg": "2rem",
+            "xl": "3rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "gutter-tablet": "1rem",
+            "gutter": "0.75rem",
+            "space-md": "0.75rem",
+            "space-sm": "0.5rem",
+            "margin": "1rem",
+            "space-xl": "2rem",
+            "space-xs": "0.25rem",
+            "margin-tablet": "2rem",
+            "space-lg": "1.25rem"
+          },
+          "fontFamily": {
+            "headline-sm": ["Roboto Flex"],
+            "title-md": ["Roboto Flex"],
+            "display-md": ["Roboto Flex"],
+            "display-lg": ["Roboto Flex"],
+            "body-md": ["Roboto Flex"],
+            "label-keypad-sm": ["Roboto Flex"],
+            "display-lg-mobile": ["Roboto Flex"],
+            "label-keypad": ["Roboto Flex"],
+            "label-sm": ["Roboto Flex"],
+            "display-md-mobile": ["Roboto Flex"],
+            "body-lg": ["Roboto Flex"]
+          },
+          "fontSize": {
+            "headline-sm": ["22px", { "lineHeight": "28px", "fontWeight": "500" }],
+            "title-md": ["16px", { "lineHeight": "24px", "letterSpacing": "0.15px", "fontWeight": "500" }],
+            "display-md": ["36px", { "lineHeight": "44px", "fontWeight": "400" }],
+            "display-lg": ["56px", { "lineHeight": "64px", "letterSpacing": "-1px", "fontWeight": "300" }],
+            "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "label-keypad-sm": ["18px", { "lineHeight": "22px", "fontWeight": "500" }],
+            "display-lg-mobile": ["42px", { "lineHeight": "48px", "letterSpacing": "-0.5px", "fontWeight": "300" }],
+            "label-keypad": ["24px", { "lineHeight": "28px", "fontWeight": "400" }],
+            "label-sm": ["11px", { "lineHeight": "16px", "letterSpacing": "0.5px", "fontWeight": "600" }],
+            "display-md-mobile": ["28px", { "lineHeight": "34px", "fontWeight": "400" }],
+            "body-lg": ["18px", { "lineHeight": "26px", "fontWeight": "400" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .specular-border {
+      border: 1px solid transparent;
+      background-clip: padding-box, border-box;
+      background-origin: padding-box, border-box;
+      background-image: 
+        linear-gradient(to bottom, #574a2e9f, #383432),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.4) 0%, rgba(245, 158, 11, 0.2) 60%, rgba(255, 255, 255, 0.05) 100%);
+    }
+    .specular-display-border {
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.4), inset 0 -1px 1px rgba(255, 255, 255, 0.15);
+    }
+    .key-tactile {
+      transition: transform 90ms cubic-bezier(0.4, 0, 0.2, 1), background-color 150ms ease, box-shadow 150ms ease, filter 100ms ease;
+      touch-action: manipulation;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .key-tactile:active, .key-tactile.key-pressed {
+      transform: scale(0.92);
+      filter: brightness(1.25);
+    }
+
+    /* Ambient breathing aura behind glass card */
+    @keyframes ambient-glow {
+      0%, 100% {
+        transform: scale(1) translate(0px, 0px) rotate(0deg);
+        opacity: 0.55;
+      }
+      33% {
+        transform: scale(1.08) translate(12px, -8px) rotate(3deg);
+        opacity: 0.75;
+      }
+      66% {
+        transform: scale(0.96) translate(-10px, 10px) rotate(-3deg);
+        opacity: 0.6;
+      }
+    }
+    .ambient-aura {
+      animation: ambient-glow 14s ease-in-out infinite alternate;
+      background: radial-gradient(circle at 50% 40%, rgba(245, 158, 11, 0.45) 0%, rgba(255, 115, 0, 0.25) 35%, rgba(139, 92, 246, 0.22) 70%, transparent 100%);
+      filter: blur(48px);
+    }
+
+    /* Number pulse animation when evaluated */
+    @keyframes result-pop {
+      0% { transform: scale(0.96); opacity: 0.85; }
+      50% { transform: scale(1.02); opacity: 1; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .animate-pop {
+      animation: result-pop 180ms cubic-bezier(0.2, 0.9, 0.3, 1);
+    }
+
+    /* Sound wave ripple animations */
+    @keyframes wave-ping {
+      0% { transform: scale(0.8); opacity: 0.8; }
+      100% { transform: scale(1.5); opacity: 0; }
+    }
+    .animate-wave-ping {
+      animation: wave-ping 0.6s cubic-bezier(0, 0, 0.2, 1) forwards;
+    }
+
+    /* Custom scrollbar for history drawer */
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: rgba(255, 193, 116, 0.25);
+      border-radius: 9999px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 193, 116, 0.45);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface antialiased m-0 p-0 overflow-x-hidden min-h-screen flex items-center justify-center font-body-md select-none relative">
+<!-- Ambient Alpine Sunset Backdrop -->
+<div class="fixed inset-0 z-0">
+<img alt="Alpine Sunset Landscape Wallpaper" class="w-full h-full object-cover object-center filter brightness-[0.88] contrast-[1.05]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5y05K90Leq8GWnUPyo9pzaMzwwNevTv4c6vNUz40mEvfzVdwOJNQ6fjlBB_GVM60Ke_V11mQ0__oCniDJMQZzFHddegQ5hStCyfWkwGP5wswTxGiHkCmDmJtEq0hw5iC0UNsW_QKdlceYDvn7bbpCtzZdysi7yL9tFMhNw1lpXjwgCsuyHevW-z2Lsw_6ZSptYg1TAIBMGyZkVvlsjJMW_KNTVPegmnIbbmu9w7kfjLW0b5TAsx21ge8W0OWd2qrYWNU"/>
+<div class="absolute inset-0 bg-gradient-to-b from-background/40 via-surface-dim/30 to-surface-container-lowest/80 backdrop-blur-[2px]"></div>
+</div>
+<!-- Primary Mobile Screen Container -->
+<div class="relative z-10 w-full max-w-[420px] min-h-screen md:min-h-0 md:h-[880px] flex flex-col justify-between py-space-sm px-margin md:px-0">
+<!-- Android System Status Bar -->
+<div class="w-full pt-space-xs px-space-md flex items-center justify-between text-text-primary/90 text-label-sm font-label-sm">
+<div class="flex items-center space-x-2">
+</div>
+</div>
+<!-- Shared Component: TopAppBar -->
+<header class="flex justify-between items-center w-full px-margin pt-space-md pb-space-sm z-30 bg-transparent backdrop-blur-md bg-surface-glass-light/10 rounded-full mt-space-xs border border-white/10 shadow-lg shadow-black/20">
+<!-- Interactive History Button -->
+<button aria-label="History" class="group relative flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 hover:bg-white/15 active:scale-95 transition-all duration-200 border border-white/10 shadow-[0_2px_8px_rgba(0,0,0,0.25)]" id="history-btn" title="View Recent History" type="button">
+<span class="material-symbols-outlined text-[20px] text-primary group-hover:rotate-[-20deg] transition-transform duration-200">history</span>
+<span class="text-xs font-medium text-amber-200/90 tracking-wide font-headline-sm hidden xs:inline sm:inline">History</span>
+<span class="w-2 h-2 rounded-full bg-amber-400 ring-2 ring-black/40 animate-pulse" id="history-indicator"></span>
+</button>
+<h1 class="text-title-md font-title-md font-medium text-text-primary tracking-wide">
+        Calculator
+</h1>
+<!-- Realistic Tactile Sound Pill Button -->
+<div class="flex items-center">
+<button aria-label="Toggle Sound Haptics" class="relative group flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-stone-900/60 hover:bg-stone-800/80 active:scale-95 transition-all duration-200 border border-amber-500/25 shadow-[0_2px_12px_rgba(0,0,0,0.35),inset_0_1px_1px_rgba(255,255,255,0.15)] overflow-hidden" id="sound-toggle-btn" title="Toggle Audio Feedback" type="button">
+<!-- Ripple highlight ring -->
+<span class="absolute inset-0 pointer-events-none rounded-full bg-amber-400/0 group-hover:bg-amber-400/10 transition-colors" id="sound-ripple"></span>
+<span class="material-symbols-outlined text-[19px] text-primary transition-all duration-200 group-hover:scale-110" id="sound-icon">volume_up</span>
+<span class="text-[11px] font-semibold tracking-wider uppercase text-amber-300 font-label-sm" id="sound-state-text">ON</span>
+<span class="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_#34d399] transition-all duration-300" id="sound-dot"></span>
+</button>
+</div>
+</header>
+<!-- Center/Bottom Glass Monolith Shell -->
+<main class="w-full my-auto flex flex-col pt-space-sm pb-space-xs relative">
+<!-- Smooth Animated Ambient Gradient Aura Behind Card -->
+<div class="absolute -inset-4 pointer-events-none ambient-aura rounded-full z-0"></div>
+<div class="w-full specular-border rounded-xl p-space-md shadow-[0_20px_50px_rgba(0,0,0,0.55)] backdrop-blur-[28px] saturate-[180%] bg-[#574a2e9f]/90 flex flex-col gap-space-md relative overflow-hidden z-10">
+<!-- Specular Highlight Sheen Overlay -->
+<div class="absolute -top-12 -left-12 w-48 h-48 bg-gradient-to-br from-white/20 to-transparent rounded-full blur-2xl pointer-events-none"></div>
+<!-- Calculator Display Panel -->
+<section class="w-full bg-[#1e1b19]/75 specular-display-border rounded-lg p-space-lg flex flex-col justify-end items-end min-h-[140px] text-right relative overflow-hidden transition-all duration-150">
+<!-- Subtle Glow in Display -->
+<div class="absolute -bottom-8 -right-8 w-32 h-32 bg-primary/10 rounded-full blur-xl pointer-events-none"></div>
+<!-- Secondary Expression Line -->
+<div class="w-full text-text-secondary font-body-md text-body-md font-normal tracking-wide truncate mb-1 min-h-[20px] transition-opacity duration-150" id="equation-display">666,286 × 66 =</div>
+<!-- Primary Running Result Line -->
+<div class="w-full text-text-primary font-display-md-mobile text-display-md-mobile md:text-display-md font-light tracking-tight truncate drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)]" id="main-display">555,555,555</div>
+</section>
+<!-- Keypad Matrix (4 Columns x 5 Rows) -->
+<section class="grid grid-cols-4 gap-gutter w-full">
+<!-- Row 1: AC, DEL, %, ÷ -->
+<button aria-label="Clear All" class="key-tactile h-14 rounded-[14px] bg-white/10 hover:bg-white/15 text-text-accent font-label-keypad-sm text-label-keypad-sm flex items-center justify-center shadow-[0_4px_12px_rgba(0,0,0,0.18),inset_0_1px_1px_rgba(255,255,255,0.2)]" data-key="AC" data-type="clear" type="button">
+  AC
+</button>
+<button aria-label="Delete" class="key-tactile h-14 rounded-[14px] bg-white/10 hover:bg-white/15 text-text-accent font-label-keypad-sm text-label-keypad-sm flex items-center justify-center shadow-[0_4px_12px_rgba(0,0,0,0.18),inset_0_1px_1px_rgba(255,255,255,0.2)]" data-key="Backspace" data-type="backspace" type="button">
+<span class="material-symbols-outlined text-[22px] pointer-events-none">backspace</span>
+</button>
+<button aria-label="Percent" class="key-tactile h-14 rounded-[14px] bg-white/10 hover:bg-white/15 text-text-accent font-label-keypad-sm text-label-keypad-sm flex items-center justify-center shadow-[0_4px_12px_rgba(0,0,0,0.18),inset_0_1px_1px_rgba(255,255,255,0.2)]" data-key="%" data-type="operator" type="button">
+  %
+</button>
+<button aria-label="Divide" class="key-tactile h-14 rounded-[14px] bg-key-action-fill hover:bg-[#6c5c37] text-primary font-label-keypad text-label-keypad flex items-center justify-center shadow-[0_4px_12px_rgba(0,0,0,0.2),inset_0_1px_1px_rgba(255,255,255,0.18)] border border-amber-500/20" data-key="/" data-type="operator" type="button">
+  ÷
+</button>
+<!-- Row 2: 7, 8, 9, × -->
+<button class="key-tactile h-14 rounded-[14px] bg-key-number-fill hover:bg-stone-800 text-text-primary font-label-keypad text-label-keypad flex items-center justify-center shadow-[0_4px_10px_rgba(0,0,0,0.2),inset_0_1px_1px_rgba(255,255,255,0.15)]" data-key="7" data-type="number" type="button">
+  7
+</button>
+<button class="key-tactile h-14 rounded-[14px] bg-key-number-fill hover:bg-stone-800 text-text-primary font-label-keypad text-label-keypad flex items-center justify-center shadow-[0_4px_10px_rgba(0,0,0,0.2),inset_0_1px_1px_rgba(255,255,255,0.15)]" data-key="8" data-type="number" type="button">
+  8
+</button>
+<button class="key-tactile h-14 rounded-[14px] bg-key-number-fill hover:bg-stone-800 text-text-primary font-label-keypad text-label-keypad flex items-center justify-center shadow-[0_4px_10px_rgba(0,0,0,0.2),inset_0_1px_1px_rgba(255,255,255,0.15)]" data-key="9" data-type="number" type="button">
+  9
+</button>
+<button aria-label="Multiply" class="key-tactile h-14 rounded-[14px] bg-key-action-fill hover:bg-[#6c5c37] text-primary font-label-keypad text-label-keypad flex items-center justify-center shadow-[0_4px_12px_rgba(0,0,0,0.2),inset_0_1px_1px_rgba(255,255,255,0.18)] border border-amber-500/20" data-key="*" data-type="operator" type="button">
+  ×
+</button>
+<!-- Row 3: 4, 5, 6, − -->
+<button class="key-tactile h-14 rounded-[14px] bg-key-number-fill hover:bg-stone-800 text-text-primary font-label-keypad text-label-keypad flex items-center justify-center shadow-[0_4px_10px_rgba(0,0,0,0.2),inset_0_1px_1px_rgba(255,255,255,0.15)]" data-key="4" data-type="number" type="button">
+  4
+</button>
+<button class="key-tactile h-14 rounded-[14px] bg-key-number-fill hover:bg-stone-800 text-text-primary font-label-keypad text-label-keypad flex items-center justify-center shadow-[0_4px_10px_rgba(0,0,0,0.2),inset_0_1px_1px_rgba(255,255,255,0.15)]" data-key="5" data-type="number" type="button">
+  5
+</button>
+<button class="key-tactile h-14 rounded-[14px] bg-key-number-fill hover:bg-stone-800 text-text-primary font-label-keypad text-label-keypad flex items-center justify-center shadow-[0_4px_10px_rgba(0,0,0,0.2),inset_0_1px_1px_rgba(255,255,255,0.15)]" data-key="6" data-type="number" type="button">
+  6
+</button>
+<button aria-label="Subtract" class="key-tactile h-14 rounded-[14px] bg-key-action-fill hover:bg-[#6c5c37] text-primary font-label-keypad text-label-keypad flex items-center justify-center shadow-[0_4px_12px_rgba(0,0,0,0.2),inset_0_1px_1px_rgba(255,255,255,0.18)] border border-amber-500/20" data-key="-" data-type="operator" type="button">
+  −
+</button>
+<!-- Row 4: 1, 2, 3, + -->
+<button class="key-tactile h-14 rounded-[14px] bg-key-number-fill hover:bg-stone-800 text-text-primary font-label-keypad text-label-keypad flex items-center justify-center shadow-[0_4px_10px_rgba(0,0,0,0.2),inset_0_1px_1px_rgba(255,255,255,0.15)]" data-key="1" data-type="number" type="button">
+  1
+</button>
+<button class="key-tactile h-14 rounded-[14px] bg-key-number-fill hover:bg-stone-800 text-text-primary font-label-keypad text-label-keypad flex items-center justify-center shadow-[0_4px_10px_rgba(0,0,0,0.2),inset_0_1px_1px_rgba(255,255,255,0.15)]" data-key="2" data-type="number" type="button">
+  2
+</button>
+<button class="key-tactile h-14 rounded-[14px] bg-key-number-fill hover:bg-stone-800 text-text-primary font-label-keypad text-label-keypad flex items-center justify-center shadow-[0_4px_10px_rgba(0,0,0,0.2),inset_0_1px_1px_rgba(255,255,255,0.15)]" data-key="3" data-type="number" type="button">
+  3
+</button>
+<button aria-label="Add" class="key-tactile h-14 rounded-[14px] bg-key-action-fill hover:bg-[#6c5c37] text-primary font-label-keypad text-label-keypad flex items-center justify-center shadow-[0_4px_12px_rgba(0,0,0,0.2),inset_0_1px_1px_rgba(255,255,255,0.18)] border border-amber-500/20" data-key="+" data-type="operator" type="button">
+  +
+</button>
+<!-- Row 5: 0, 00, ., = -->
+<button class="key-tactile h-14 rounded-[14px] bg-key-number-fill hover:bg-stone-800 text-text-primary font-label-keypad text-label-keypad flex items-center justify-center shadow-[0_4px_10px_rgba(0,0,0,0.2),inset_0_1px_1px_rgba(255,255,255,0.15)]" data-key="0" data-type="number" type="button">
+  0
+</button>
+<button class="key-tactile h-14 rounded-[14px] bg-key-number-fill hover:bg-stone-800 text-text-primary font-label-keypad-sm text-label-keypad-sm flex items-center justify-center shadow-[0_4px_10px_rgba(0,0,0,0.2),inset_0_1px_1px_rgba(255,255,255,0.15)]" data-key="00" data-type="number" type="button">
+  00
+</button>
+<button class="key-tactile h-14 rounded-[14px] bg-key-number-fill hover:bg-stone-800 text-text-primary font-label-keypad text-label-keypad flex items-center justify-center shadow-[0_4px_10px_rgba(0,0,0,0.2),inset_0_1px_1px_rgba(255,255,255,0.15)]" data-key="." data-type="decimal" type="button">
+  .
+</button>
+<button aria-label="Calculate Equals" class="key-tactile h-14 rounded-[14px] bg-key-accent-fill hover:bg-amber-400 text-surface-container-lowest font-semibold font-label-keypad text-label-keypad flex items-center justify-center shadow-[0_4px_22px_rgba(245,158,11,0.5),inset_0_1px_1px_rgba(255,255,255,0.35)]" data-key="Enter" data-type="equals" type="button">
+  =
+</button>
+</section>
+</div>
+</main>
+<!-- Native Android Bottom Gesture Handle -->
+<footer class="w-full pb-space-sm pt-space-xs flex justify-center items-center">
+<div class="w-36 h-1 bg-on-surface/40 rounded-full hover:bg-on-surface/60 transition-colors cursor-pointer"></div>
+</footer>
+<!-- Interactive History Drawer Bottom Sheet Overlay -->
+<div class="fixed inset-0 z-50 pointer-events-none transition-all duration-300" id="history-sheet-container">
+<!-- Backdrop Scrim -->
+<div class="absolute inset-0 bg-black/60 backdrop-blur-sm opacity-0 transition-opacity duration-300 pointer-events-none cursor-pointer" id="history-scrim"></div>
+<!-- Slide-Up Bottom Drawer Sheet -->
+<div class="absolute bottom-0 left-0 right-0 max-w-[420px] mx-auto w-full max-h-[85vh] bg-[#221f1d]/95 backdrop-blur-2xl rounded-t-[2.5rem] border-t border-amber-500/30 border-x border-amber-500/20 shadow-[0_-15px_45px_rgba(0,0,0,0.8)] flex flex-col translate-y-full transition-transform duration-300 ease-out z-20 pointer-events-auto" id="history-sheet">
+<!-- Drag pill handle -->
+<div class="w-full pt-3 pb-1 flex justify-center items-center cursor-grab active:cursor-grabbing">
+<div class="w-12 h-1.5 bg-amber-200/30 rounded-full"></div>
+</div>
+<!-- Drawer Header -->
+<div class="px-5 py-3 flex items-center justify-between border-b border-white/10">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[22px]">history</span>
+<h2 class="text-base font-semibold text-text-primary tracking-wide">Calculation History</h2>
+<span class="text-xs px-2 py-0.5 rounded-full bg-amber-500/20 text-primary border border-amber-500/30" id="history-count-badge">3</span>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-1.5 rounded-full text-text-secondary hover:text-error hover:bg-error-container/30 transition-colors" id="clear-history-btn" title="Clear all history" type="button">
+<span class="material-symbols-outlined text-[20px]">delete_sweep</span>
+</button>
+<button class="p-1.5 rounded-full text-text-secondary hover:text-text-primary hover:bg-white/10 transition-colors" id="close-history-btn" title="Close drawer" type="button">
+<span class="material-symbols-outlined text-[22px]">close</span>
+</button>
+</div>
+</div>
+<!-- History Items List Container -->
+<div class="px-4 py-3 flex-1 overflow-y-auto custom-scrollbar flex flex-col gap-2.5 max-h-[50vh]" id="history-list-items">
+<!-- Populated dynamically via JS -->
+</div>
+<!-- Drawer Footer Tip -->
+<div class="p-3 bg-surface-container-lowest/60 text-center text-xs text-text-secondary/70 border-t border-white/5 rounded-b-[2.5rem] flex items-center justify-center gap-1.5">
+<span class="material-symbols-outlined text-[15px] text-amber-400">touch_app</span>
+<span>Tap <strong>Use</strong> to load calculation result into current keypad</span>
+</div>
+</div>
+</div>
+</div>
+<script>
+  (function () {
+    // -------------------------------------------------------------------------
+    // 1. Audio & Haptic Feedback Engine via Web Audio API
+    // -------------------------------------------------------------------------
+    let audioCtx = null;
+    let soundEnabled = true;
+
+    function getAudioContext() {
+      if (!audioCtx) {
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        if (AudioContextClass) {
+          audioCtx = new AudioContextClass();
+        }
+      }
+      if (audioCtx && audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      return audioCtx;
+    }
+
+    function playTone(freq, duration, type = 'sine', gainVal = 0.15, pitchDecay = true) {
+      if (!soundEnabled) return;
+      try {
+        const ctx = getAudioContext();
+        if (!ctx) return;
+        const now = ctx.currentTime;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, now);
+        if (pitchDecay) {
+          osc.frequency.exponentialRampToValueAtTime(Math.max(40, freq * 0.4), now + duration);
+        }
+
+        gain.gain.setValueAtTime(gainVal, now);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
+
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+
+        osc.start(now);
+        osc.stop(now + duration);
+      } catch (e) {
+        console.error(e);
+      }
+    }
+
+    function playHapticSound(kind) {
+      // Hardware vibration if supported
+      if (window.navigator && window.navigator.vibrate) {
+        try {
+          if (kind === 'equals') window.navigator.vibrate([14, 30, 20]);
+          else if (kind === 'clear') window.navigator.vibrate([10, 25, 10]);
+          else window.navigator.vibrate(8);
+        } catch (_) {}
+      }
+
+      // Synthesized Audio feedback
+      if (!soundEnabled) return;
+
+      if (kind === 'number') {
+        // High crisp tactile micro-click
+        playTone(1050, 0.038, 'triangle', 0.18, true);
+      } else if (kind === 'operator' || kind === 'backspace') {
+        // Warm resonant tactile tap
+        playTone(520, 0.055, 'sine', 0.22, true);
+      } else if (kind === 'equals') {
+        // Harmonious confirmation chord (523Hz C5 + 659Hz E5)
+        playTone(523.25, 0.24, 'sine', 0.2, false);
+        setTimeout(() => {
+          playTone(659.25, 0.28, 'sine', 0.24, false);
+        }, 35);
+      } else if (kind === 'clear') {
+        // Dismissive double-tick
+        playTone(380, 0.04, 'triangle', 0.2, true);
+        setTimeout(() => {
+          playTone(280, 0.045, 'triangle', 0.18, true);
+        }, 55);
+      } else if (kind === 'toggle-on') {
+        playTone(587.33, 0.08, 'sine', 0.16, false);
+        setTimeout(() => playTone(880, 0.12, 'sine', 0.2, false), 50);
+      } else if (kind === 'toggle-off') {
+        playTone(620, 0.07, 'sine', 0.16, false);
+        setTimeout(() => playTone(311.13, 0.1, 'sine', 0.16, false), 50);
+      }
+    }
+
+    // Toggle Sound Button Realistic UI
+    const soundToggleBtn = document.getElementById('sound-toggle-btn');
+    const soundIcon = document.getElementById('sound-icon');
+    const soundDot = document.getElementById('sound-dot');
+    const soundStateText = document.getElementById('sound-state-text');
+
+    if (soundToggleBtn && soundIcon) {
+      soundToggleBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        soundEnabled = !soundEnabled;
+
+        if (soundEnabled) {
+          playHapticSound('toggle-on');
+          soundIcon.textContent = 'volume_up';
+          soundIcon.className = 'material-symbols-outlined text-[19px] text-primary transition-all duration-200 group-hover:scale-110';
+          soundDot.className = 'w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_#34d399] transition-all duration-300';
+          soundStateText.textContent = 'ON';
+          soundStateText.className = 'text-[11px] font-semibold tracking-wider uppercase text-amber-300 font-label-sm';
+          soundToggleBtn.classList.remove('border-stone-700', 'bg-stone-900/40');
+          soundToggleBtn.classList.add('border-amber-500/25', 'bg-stone-900/60');
+        } else {
+          playTone(400, 0.05, 'triangle', 0.12, true); // Play brief tone before silent
+          soundIcon.textContent = 'volume_off';
+          soundIcon.className = 'material-symbols-outlined text-[19px] text-stone-500 transition-all duration-200';
+          soundDot.className = 'w-2 h-2 rounded-full bg-stone-600 shadow-none transition-all duration-300';
+          soundStateText.textContent = 'OFF';
+          soundStateText.className = 'text-[11px] font-semibold tracking-wider uppercase text-stone-500 font-label-sm';
+          soundToggleBtn.classList.remove('border-amber-500/25', 'bg-stone-900/60');
+          soundToggleBtn.classList.add('border-stone-700', 'bg-stone-900/40');
+        }
+      });
+    }
+
+    // -------------------------------------------------------------------------
+    // 2. Interactive Calculation History Bottom Sheet Drawer
+    // -------------------------------------------------------------------------
+    let historyData = [
+      { equation: "666,286 × 66 =", result: "555,555,555", time: "Just now" },
+      { equation: "1,450 × 8.5 =", result: "12,325", time: "5m ago" },
+      { equation: "320 + 48 − 45 =", result: "323", time: "12m ago" }
+    ];
+
+    const historyBtn = document.getElementById('history-btn');
+    const historySheetContainer = document.getElementById('history-sheet-container');
+    const historyScrim = document.getElementById('history-scrim');
+    const historySheet = document.getElementById('history-sheet');
+    const closeHistoryBtn = document.getElementById('close-history-btn');
+    const clearHistoryBtn = document.getElementById('clear-history-btn');
+    const historyListItems = document.getElementById('history-list-items');
+    const historyCountBadge = document.getElementById('history-count-badge');
+    const historyIndicator = document.getElementById('history-indicator');
+
+    function renderHistory() {
+      historyCountBadge.textContent = historyData.length;
+      if (historyData.length === 0) {
+        historyIndicator.classList.add('hidden');
+        historyListItems.innerHTML = `
+          <div class="py-10 flex flex-col items-center justify-center text-center text-text-secondary/60">
+            <span class="material-symbols-outlined text-4xl mb-2 text-stone-600">history_toggle_off</span>
+            <p class="text-sm font-medium">No calculation history</p>
+            <p class="text-xs text-stone-500">Calculations will appear here automatically</p>
+          </div>
+        `;
+        return;
+      }
+
+      historyIndicator.classList.remove('hidden');
+      historyListItems.innerHTML = historyData.map((item, index) => `
+        <div class="group/item flex items-center justify-between p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/5 hover:border-amber-500/30 transition-all duration-200">
+          <div class="flex flex-col text-left overflow-hidden pr-2">
+            <span class="text-xs text-text-secondary/70 font-mono tracking-wide truncate">${item.equation}</span>
+            <span class="text-lg font-medium text-amber-200 font-headline-sm truncate tracking-tight">${item.result}</span>
+            <span class="text-[10px] text-stone-400 mt-0.5">${item.time}</span>
+          </div>
+          <div class="flex items-center gap-1.5 shrink-0">
+            <button data-use-index="${index}" class="use-history-btn px-2.5 py-1 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-xs font-medium flex items-center gap-1 active:scale-95 transition-all" title="Load into display">
+              <span class="material-symbols-outlined text-[14px]">reply</span>
+              <span>Use</span>
+            </button>
+            <button data-del-index="${index}" class="delete-history-btn p-1 rounded-lg text-stone-500 hover:text-red-400 hover:bg-red-500/10 active:scale-95 transition-colors" title="Delete record">
+              <span class="material-symbols-outlined text-[16px]">close</span>
+            </button>
+          </div>
+        </div>
+      `).join('');
+
+      // Add event listeners for dynamic item buttons
+      historyListItems.querySelectorAll('.use-history-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const idx = parseInt(btn.getAttribute('data-use-index'), 10);
+          if (historyData[idx]) {
+            currentInput = historyData[idx].result.replace(/,/g, '');
+            equation = historyData[idx].equation;
+            resetOnNextNumber = true;
+            updateDisplay(true);
+            playHapticSound('number');
+            closeHistorySheet();
+          }
+        });
+      });
+
+      historyListItems.querySelectorAll('.delete-history-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const idx = parseInt(btn.getAttribute('data-del-index'), 10);
+          historyData.splice(idx, 1);
+          renderHistory();
+          playHapticSound('backspace');
+        });
+      });
+    }
+
+    function openHistorySheet() {
+      playTone(450, 0.05, 'sine', 0.14, false);
+      historySheetContainer.classList.remove('pointer-events-none');
+      historyScrim.classList.remove('pointer-events-none', 'opacity-0');
+      historyScrim.classList.add('opacity-100');
+      historySheet.classList.remove('translate-y-full');
+      renderHistory();
+    }
+
+    function closeHistorySheet() {
+      historySheetContainer.classList.add('pointer-events-none');
+      historyScrim.classList.add('opacity-0', 'pointer-events-none');
+      historyScrim.classList.remove('opacity-100');
+      historySheet.classList.add('translate-y-full');
+    }
+
+    if (historyBtn) historyBtn.addEventListener('click', openHistorySheet);
+    if (closeHistoryBtn) closeHistoryBtn.addEventListener('click', closeHistorySheet);
+    if (historyScrim) historyScrim.addEventListener('click', closeHistorySheet);
+
+    if (clearHistoryBtn) {
+      clearHistoryBtn.addEventListener('click', () => {
+        if (historyData.length > 0) {
+          playHapticSound('clear');
+          historyData = [];
+          renderHistory();
+        }
+      });
+    }
+
+    // -------------------------------------------------------------------------
+    // 3. Interactive Calculator State & Evaluation Logic
+    // -------------------------------------------------------------------------
+    const mainDisplay = document.getElementById('main-display');
+    const eqDisplay = document.getElementById('equation-display');
+
+    let currentInput = "555555555";
+    let equation = "666,286 × 66 =";
+    let resetOnNextNumber = true;
+
+    function formatNumberString(numStr) {
+      if (numStr === 'Error' || numStr === 'Infinity' || numStr === '-Infinity') return 'Error';
+      if (numStr.endsWith('.')) {
+        const parts = numStr.split('.');
+        const formattedInt = Number(parts[0]).toLocaleString('en-US');
+        return formattedInt + '.';
+      }
+      if (numStr.includes('.')) {
+        const [intPart, decPart] = numStr.split('.');
+        const formattedInt = Number(intPart || 0).toLocaleString('en-US');
+        return `${formattedInt}.${decPart}`;
+      }
+      const num = Number(numStr);
+      if (isNaN(num)) return numStr;
+      return num.toLocaleString('en-US', { maximumFractionDigits: 8 });
+    }
+
+    function updateDisplay(popEffect = false) {
+      mainDisplay.textContent = formatNumberString(currentInput);
+      eqDisplay.textContent = equation;
+
+      // Dynamic text sizing for large numbers
+      const len = mainDisplay.textContent.length;
+      if (len > 12) {
+        mainDisplay.className = "w-full text-text-primary font-display-md text-display-md font-light tracking-tight truncate drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)]";
+      } else if (len > 8) {
+        mainDisplay.className = "w-full text-text-primary font-display-md-mobile text-display-md-mobile md:text-display-md font-light tracking-tight truncate drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)]";
+      } else {
+        mainDisplay.className = "w-full text-text-primary font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg font-light tracking-tight truncate drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)]";
+      }
+
+      if (popEffect) {
+        mainDisplay.classList.remove('animate-pop');
+        void mainDisplay.offsetWidth; // Reflow
+        mainDisplay.classList.add('animate-pop');
+      }
+    }
+
+    function inputDigit(digit) {
+      playHapticSound('number');
+      if (currentInput === 'Error' || resetOnNextNumber) {
+        currentInput = digit === '00' ? '0' : digit;
+        resetOnNextNumber = false;
+      } else {
+        if (currentInput === '0' && digit !== '00') {
+          currentInput = digit;
+        } else if (currentInput === '0' && digit === '00') {
+          currentInput = '0';
+        } else {
+          if (currentInput.replace('.', '').length < 15) {
+            currentInput += digit;
+          }
+        }
+      }
+      updateDisplay();
+    }
+
+    function inputDecimal() {
+      playHapticSound('number');
+      if (currentInput === 'Error' || resetOnNextNumber) {
+        currentInput = '0.';
+        resetOnNextNumber = false;
+      } else if (!currentInput.includes('.')) {
+        currentInput += '.';
+      }
+      updateDisplay();
+    }
+
+    function clearAll() {
+      playHapticSound('clear');
+      currentInput = '0';
+      equation = '';
+      resetOnNextNumber = false;
+      updateDisplay();
+    }
+
+    function deleteLast() {
+      playHapticSound('backspace');
+      if (currentInput === 'Error' || resetOnNextNumber) {
+        currentInput = '0';
+        resetOnNextNumber = false;
+      } else {
+        if (currentInput.length > 1) {
+          currentInput = currentInput.slice(0, -1);
+          if (currentInput === '-') currentInput = '0';
+        } else {
+          currentInput = '0';
+        }
+      }
+      updateDisplay();
+    }
+
+    function handleOperator(op) {
+      playHapticSound('operator');
+      const opSymbols = { '+': '+', '-': '−', '*': '×', '/': '÷' };
+      const displaySymbol = opSymbols[op] || op;
+
+      if (currentInput === 'Error') {
+        currentInput = '0';
+      }
+
+      if (op === '%') {
+        const val = parseFloat(currentInput);
+        if (!isNaN(val)) {
+          const res = val / 100;
+          currentInput = String(res);
+          equation = `${formatNumberString(String(val))}%`;
+          resetOnNextNumber = true;
+          updateDisplay(true);
+
+          historyData.unshift({
+            equation: `${formatNumberString(String(val))}% =`,
+            result: formatNumberString(String(res)),
+            time: "Just now"
+          });
+        }
+        return;
+      }
+
+      if (equation && !resetOnNextNumber) {
+        evaluateCalculation(false);
+      }
+
+      equation = `${formatNumberString(currentInput)} ${displaySymbol}`;
+      resetOnNextNumber = true;
+      updateDisplay();
+    }
+
+    function evaluateCalculation(isFinal = true) {
+      if (!equation || equation.includes('=')) {
+        if (isFinal) playHapticSound('equals');
+        return;
+      }
+
+      const match = equation.match(/([−\-+×÷*\/])\s*$/);
+      if (!match) return;
+
+      const rawOp = match[1];
+      const prevNumStr = equation.replace(match[0], '').replace(/,/g, '').trim();
+      const prevNum = parseFloat(prevNumStr);
+      const currentNum = parseFloat(currentInput.replace(/,/g, ''));
+
+      if (isNaN(prevNum) || isNaN(currentNum)) return;
+
+      let result = 0;
+      let divByZero = false;
+
+      switch (rawOp) {
+        case '+':
+          result = prevNum + currentNum;
+          break;
+        case '-':
+        case '−':
+          result = prevNum - currentNum;
+          break;
+        case '×':
+        case '*':
+          result = prevNum * currentNum;
+          break;
+        case '÷':
+        case '/':
+          if (currentNum === 0) divByZero = true;
+          else result = prevNum / currentNum;
+          break;
+        default:
+          return;
+      }
+
+      if (isFinal) {
+        playHapticSound('equals');
+      }
+
+      if (divByZero) {
+        equation = `${formatNumberString(String(prevNum))} ${rawOp} 0 =`;
+        currentInput = 'Error';
+        resetOnNextNumber = true;
+        updateDisplay(true);
+        return;
+      }
+
+      const precisionResult = parseFloat(result.toPrecision(12));
+      const resultStr = String(precisionResult);
+
+      if (isFinal) {
+        const fullEquation = `${formatNumberString(String(prevNum))} ${rawOp} ${formatNumberString(String(currentNum))} =`;
+        equation = fullEquation;
+        currentInput = resultStr;
+        resetOnNextNumber = true;
+        updateDisplay(true);
+
+        // Add to Calculation History dynamically
+        historyData.unshift({
+          equation: fullEquation,
+          result: formatNumberString(resultStr),
+          time: "Just now"
+        });
+        if (historyData.length > 20) historyData.pop();
+        historyCountBadge.textContent = historyData.length;
+        historyIndicator.classList.remove('hidden');
+      } else {
+        currentInput = resultStr;
+      }
+    }
+
+    // -------------------------------------------------------------------------
+    // 4. Attach Events to Calculator Keypad
+    // -------------------------------------------------------------------------
+    const buttons = document.querySelectorAll('button[data-key]');
+    buttons.forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const key = btn.getAttribute('data-key');
+        const type = btn.getAttribute('data-type');
+
+        if (type === 'number') {
+          inputDigit(key);
+        } else if (type === 'decimal') {
+          inputDecimal();
+        } else if (type === 'clear') {
+          clearAll();
+        } else if (type === 'backspace') {
+          deleteLast();
+        } else if (type === 'operator') {
+          handleOperator(key);
+        } else if (type === 'equals') {
+          evaluateCalculation(true);
+        }
+      });
+    });
+
+    // Keyboard support
+    window.addEventListener('keydown', (e) => {
+      let key = e.key;
+      let targetBtn = null;
+
+      if (key >= '0' && key <= '9') {
+        inputDigit(key);
+        targetBtn = document.querySelector(`button[data-key="${key}"]`);
+      } else if (key === '.') {
+        inputDecimal();
+        targetBtn = document.querySelector('button[data-key="."]');
+      } else if (key === '+' || key === '-' || key === '*' || key === '/' || key === '%') {
+        handleOperator(key);
+        targetBtn = document.querySelector(`button[data-key="${key}"]`);
+      } else if (key === 'Enter' || key === '=') {
+        e.preventDefault();
+        evaluateCalculation(true);
+        targetBtn = document.querySelector('button[data-key="Enter"]');
+      } else if (key === 'Backspace') {
+        deleteLast();
+        targetBtn = document.querySelector('button[data-key="Backspace"]');
+      } else if (key === 'Escape' || key.toLowerCase() === 'c') {
+        if (!historySheet.classList.contains('translate-y-full')) {
+          closeHistorySheet();
+        } else {
+          clearAll();
+          targetBtn = document.querySelector('button[data-key="AC"]');
+        }
+      }
+
+      if (targetBtn) {
+        targetBtn.classList.add('key-pressed');
+        setTimeout(() => targetBtn.classList.remove('key-pressed'), 120);
+      }
+    });
+
+    // Initial render
+    renderHistory();
+    updateDisplay();
+  })();
+</script>
+</body></html>
